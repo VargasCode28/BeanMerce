@@ -65,3 +65,19 @@ npm run test:e2e -- tests/example.spec.ts
 # Runs the tests in debug mode
 npm run test:e2e -- --debug
 ```
+
+
+
+ #Herramientas utilizadas para el frontend 
+
+
+
+# vue@3.5.25
+
+# bootstrap@5.3.8
+
+# typescript@5.9.3
+
+# se uso axios para el manejo de  conexion global con el backend y haci lograr conectar las apis
+
+# se uso router en frontend 

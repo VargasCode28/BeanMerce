@@ -183,11 +183,50 @@ import { checkoutRequest } from '@/services/order.service'
 
 
 const products = ref<any[]>([])
-const cart = ref<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'))
+
+// const cart = ref<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'))
 
 
 
-watch(cart, c => localStorage.setItem('cart', JSON.stringify(c)), { deep: true })
+
+
+
+
+const cart = ref<any[]>([])
+
+const loadCart = () => {
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  const userId = user?._id || 'guest'
+  const CART_KEY = `cart_${userId}`
+
+  cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
+}
+
+// cargar carrito al entrar
+onMounted(() => {
+  loadCart()
+})
+
+
+
+// watch(cart, c => localStorage.setItem('cart', JSON.stringify(c)), { deep: true })
+
+
+
+
+
+watch(cart, c => {
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  const userId = user?._id || 'guest'
+  const CART_KEY = `cart_${userId}`
+
+  localStorage.setItem(CART_KEY, JSON.stringify(c))
+}, { deep: true })
+
+
+
+
+
 
 onMounted(async () => {
   try {
@@ -228,8 +267,12 @@ const goToPayment = () => {
 
 
 
-const logout = () => {
-  localStorage.clear()
+const logout = () => {          
+  // localStorage.clear()
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
+
+
   router.push('/')
 }
 

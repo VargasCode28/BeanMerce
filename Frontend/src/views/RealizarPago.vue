@@ -141,7 +141,7 @@
 
 
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref, computed } from 'vue'
 import router from '@/router'
 import Swal from 'sweetalert2'
@@ -207,6 +207,7 @@ const confirmPayment = async () => {
   }
 }
 </script>
+ -->
 
 
 
@@ -215,6 +216,143 @@ const confirmPayment = async () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import router from '@/router'
+import Swal from 'sweetalert2'
+import { checkoutRequest } from '@/services/order.service'
+
+const cart = ref<any[]>([])
+
+const loadCart = () => {
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  const userId = user?._id || 'guest'
+  const CART_KEY = `cart_${userId}`
+
+  cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
+}
+
+onMounted(() => {
+  loadCart()
+})
+
+const total = computed(() =>
+  cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
+)
+
+const paymentMethod = ref('')
+const paypalEmail = ref('')
+const card = ref({
+  number: '',
+  name: '',
+  exp: '',
+  cvc: ''
+})
+
+const confirmPayment = async () => {
+  if (!paymentMethod.value) {
+    Swal.fire('Selecciona un método de pago', '', 'warning')
+    return
+  }
+
+  if (
+    paymentMethod.value === 'card' &&
+    (!card.value.number ||
+      !card.value.name ||
+      !card.value.exp ||
+      !card.value.cvc)
+  ) {
+    Swal.fire('Completa los datos de la tarjeta', '', 'warning')
+    return
+  }
+
+  if (paymentMethod.value === 'paypal' && !paypalEmail.value) {
+    Swal.fire('Ingresa tu correo de PayPal', '', 'warning')
+    return
+  }
+
+  try {
+    await checkoutRequest({
+      items: cart.value.map(i => ({
+        product: i._id,
+        quantity: i.quantity,
+        price: i.price
+      })),
+      paymentMethod: paymentMethod.value,
+      paymentData:
+        paymentMethod.value === 'card'
+          ? card.value
+          : { email: paypalEmail.value }
+    })
+
+    // 🔥 limpiar carrito correctamente
+    const user = JSON.parse(localStorage.getItem('user') || 'null')
+    const userId = user?._id || 'guest'
+    localStorage.removeItem(`cart_${userId}`)
+
+    Swal.fire('Pago exitoso', 'Gracias por tu compra ☕', 'success')
+    router.push('/shop')
+  } catch (error) {
+    Swal.fire('Error', 'No se pudo procesar el pago', 'error')
+  }
+}
+</script>
 
 
 
