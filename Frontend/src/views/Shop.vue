@@ -1,6 +1,4 @@
-
 <template>
-
   <div class="shop-wrapper">
     <nav class="navbar navbar-expand-lg sticky-top custom-nav">
       <div class="container">
@@ -8,8 +6,25 @@
           <img src="@/assets/Logo_Beanmerce.png" class="logo-img" />
           <span class="brand-name">BEANMERCE</span>
         </a>
-        
-        <div class="nav-actions">
+
+
+        <div class="nav-actions d-flex align-items-center gap-3 ">  <!-- NEW  Change-->
+          
+          
+          
+          
+
+
+        <!-- USER PROFILE           NEW CHANGE-->
+        <div   v-if="user" class="user-info d-flex-items-center gap-2">
+          <i class="bi bi-person-circle user-icon"></i>
+          <span class="user-email">{{ user.email }}</span>
+
+
+        </div>
+
+          
+          
           <button 
             class="cart-trigger" 
             type="button" 
@@ -23,14 +38,6 @@
         </div>
       </div>
     </nav>
-
-
-
-
-
-
-
-
 
 <section class="about-section py-5 mt-4">
       <div class="container">
@@ -70,11 +77,6 @@
     <div class="container text-center mt-5 mb-2">
       <hr class="minimal-divider mx-auto" />
     </div>
-
-
-
-
-
 
 
     <header class="hero-minimal">
@@ -128,13 +130,6 @@
 
 
 
-
-
-
-
-
-
-
         <div class="cart-items-list">
           <div v-for="item in cart" :key="item._id" class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom">
             <div class="flex-grow-1">
@@ -146,10 +141,6 @@
             </div>
           </div>
         </div>
-
-
-
-
 
 
         <div v-if="cart.length" class="mt-auto">
@@ -164,9 +155,7 @@
       </div>
     </div>
   </div>
-
 </template>
-
 
 
 
@@ -183,16 +172,35 @@ import { checkoutRequest } from '@/services/order.service'
 
 
 const products = ref<any[]>([])
-
-// const cart = ref<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'))
-
-
-
-
-
-
-
 const cart = ref<any[]>([])
+
+const user =  ref<any>(null)  //NEW 
+
+
+
+
+
+
+  onMounted(() => {        //NEW 
+
+    const storeUser = localStorage.getItem('user')
+    if(storeUser) {
+      user.value = JSON.parse(storeUser)
+    }
+  })
+
+
+
+
+
+const getUserId = () => {
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  return user?._id || null
+}
+
+
+
+
 
 const loadCart = () => {
   const user = JSON.parse(localStorage.getItem('user') || 'null')
@@ -202,16 +210,9 @@ const loadCart = () => {
   cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
 }
 
-// cargar carrito al entrar
 onMounted(() => {
   loadCart()
 })
-
-
-
-// watch(cart, c => localStorage.setItem('cart', JSON.stringify(c)), { deep: true })
-
-
 
 
 
@@ -222,8 +223,6 @@ watch(cart, c => {
 
   localStorage.setItem(CART_KEY, JSON.stringify(c))
 }, { deep: true })
-
-
 
 
 
@@ -267,11 +266,13 @@ const goToPayment = () => {
 
 
 
-const logout = () => {          
-  // localStorage.clear()
+
+
+
+const logout = () => {   
+  
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-
 
   router.push('/')
 }
@@ -297,14 +298,12 @@ onMounted(() => {
 
 
 
-// Limpiar cuando el usuario se va a otra página (esto arregla el error al volver atrás)
 onUnmounted(() => {
   cleanScroll();
 })
 
+
 </script>
-
-
 
 
 
@@ -330,6 +329,45 @@ onUnmounted(() => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+
+
+
+
+
+
+ /* NEW CHANGE FOR MI PROFILE*/
+.user-info {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+}
+
+
+.user-icon {
+  font-size: 1.4rem;
+  color: #6F4E37;
+}
+
+.user-email {
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -632,6 +670,44 @@ main { flex: 1; }
   font-size: 0.75rem;
   color: #aaa;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*FADE UP PAGE ANIMATION*/
+
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+main,
+.hero-minimal,
+.about-section {
+  animation: fadeUp 0.6s ease-out;
+}
+
+
+
+
 </style>
 
 

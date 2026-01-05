@@ -88,6 +88,9 @@ const login = async () => {
     const { data } = await loginRequest(email.value, password.value)
     localStorage.setItem('token', data.token)
     localStorage.setItem('role', data.user.role)
+    localStorage.setItem('user', JSON.stringify(data.user))
+   
+
 
 
 
