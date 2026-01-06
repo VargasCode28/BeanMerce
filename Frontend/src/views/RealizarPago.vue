@@ -6,6 +6,7 @@
         <h1 class="checkout-title">Finalizar Compra</h1>
         <p class="text-muted">Estás a un paso de disfrutar el mejor café de especialidad.</p>
       </header>
+      
 
       <div class="row g-5">
         <div class="col-lg-7">
@@ -194,10 +195,13 @@ const card = ref({
   cvc: ''
 })
 
+
+
+
+
 const confirmPayment = async () => {
 
 
-// 🔥 PASO 3 VA AQUÍ (AL INICIO)
   if (!cart.value.length) {
     Swal.fire(
       'Carrito vacío',
@@ -230,6 +234,91 @@ const confirmPayment = async () => {
     return
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   try {
     await checkoutRequest({
       items: cart.value.map(i => ({
@@ -244,7 +333,6 @@ const confirmPayment = async () => {
           : { email: paypalEmail.value }
     })
 
-    // 🔥 limpiar carrito correctamente
     const user = JSON.parse(localStorage.getItem('user') || 'null')
     const userId = user?._id || 'guest'
     localStorage.removeItem(`cart_${userId}`)
@@ -254,7 +342,9 @@ const confirmPayment = async () => {
   } catch (error) {
     Swal.fire('Error', 'No se pudo procesar el pago', 'error')
   }
+
 }
+
 </script>
 
 

@@ -1,5 +1,6 @@
 import Dashboard from '@/views/Dashboard.vue'
 import LoginView from '@/views/LoginView.vue'
+import Perfil from '@/views/Perfil.vue'
 import RealizarPago from '@/views/RealizarPago.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import Shop from '@/views/Shop.vue'
@@ -43,7 +44,16 @@ const router = createRouter({
       name: 'RealizarPago',
       component: RealizarPago
 
+    },
+
+
+    {
+      path: '/perfil',
+      name: 'perfil',
+      component: Perfil,
+      meta: {requiresAuth: true}
     }
+
   ],
 })
 

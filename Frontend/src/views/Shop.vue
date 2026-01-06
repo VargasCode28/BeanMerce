@@ -16,13 +16,25 @@
 
 
         <!-- USER PROFILE           NEW CHANGE-->
-        <div   v-if="user" class="user-info d-flex-items-center gap-2">
+        <!-- <div   v-if="user" class="user-info d-flex-items-center gap-2">
           <i class="bi bi-person-circle user-icon"></i>
-          <span class="user-email">{{ user.email }}</span>
+          <span class="user-email">{{ user.email }}</span> -->
 
 
-        </div>
 
+          <router-link
+          v-if="user"
+          to="/perfil"
+          class="user-info d-flex align-items-center gap-2 text-decoration-none">
+          
+
+
+          <i class="bi bi-person-circle user-icon"></i>
+          <span class="user-email">{{ user.name }}</span>
+        
+
+
+          </router-link>
           
           
           <button 
@@ -168,6 +180,7 @@ import router from '@/router'
 import Swal from 'sweetalert2'
 import { getProductsRequest } from '@/services/product.service'
 import { checkoutRequest } from '@/services/order.service'
+import { routerKey } from 'vue-router'
 
 
 
@@ -236,10 +249,14 @@ onMounted(async () => {
   }
 })
 
+
 const addToCart = (product: any) => {
   const existing = cart.value.find(p => p._id === product._id)
   existing ? existing.quantity++ : cart.value.push({ ...product, quantity: 1 })
 
+
+
+  
   Swal.fire({
     toast: true,
     position: 'bottom-end',
