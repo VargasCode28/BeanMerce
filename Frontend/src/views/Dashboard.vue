@@ -222,7 +222,9 @@ const logout = () => {
 }
 </script>
 
-<style scoped>
+
+
+<!-- <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 
 .admin-layout {
@@ -325,4 +327,22 @@ const logout = () => {
 .badge-method { background: #f8f9fa; color: #666; font-size: 0.65rem; padding: 4px 10px; border-radius: 6px; font-weight: 700; }
 .status-pill { background: #eafaf1; color: #28a745; font-size: 0.65rem; font-weight: 800; padding: 5px 15px; border-radius: 50px; }
 .border-bottom-faint { border-bottom: 1px solid #f9f9f9; }
+</style> -->
+
+
+
+
+
+
+
+
+
+
+
+<style scoped
+
+src="/src/styles/Dashboard.css"
+
+>
+
 </style>

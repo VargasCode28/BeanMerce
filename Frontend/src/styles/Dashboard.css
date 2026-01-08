@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+.admin-layout {
+  min-height: 100vh;
+  background-color: #fcfcfc;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Sidebar Estilo Boutique */
+.sidebar-minimal {
+  width: 280px;
+  background-color: #ffffff;
+  border-right: 1px solid #f0f0f0;
+}
+
+.admin-logo {
+  height: 50px;
+  border-radius: 8px;
+}
+
+.ls-2 { letter-spacing: 2px; font-size: 0.75rem; color: #1a1a1a; }
+
+.nav-link-minimal {
+  color: #888;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-link-minimal:hover, .nav-link-minimal.active {
+  color: #342318;
+  background-color: #fdfaf8;
+}
+
+.btn-logout-minimal {
+  background: none;
+  border: none;
+  color: #cc0000;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 12px 18px;
+  text-align: left;
+}
+
+/* UI Elements */
+.badge-admin {
+  background-color: #fdfaf8;
+  color: #A67B5B;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border: 1px solid #eee;
+}
+
+.stat-card-minimal {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label { font-size: 0.7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+.stat-value { font-weight: 800; font-size: 1.8rem; margin: 0; color: #342318; }
+.stat-icon-minimal { font-size: 1.5rem; color: #A67B5B; background: #fdfaf8; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 15px; }
+
+/* Forms & Tables */
+.card-minimal-form, .card-minimal-table {
+  background: white;
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid #f0f0f0;
+}
+
+.label-minimal { font-size: 0.7rem; font-weight: 700; color: #555; margin-bottom: 8px; display: block; }
+.input-minimal {
+  width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #eee; outline: none; font-size: 0.9rem; transition: 0.3s;
+}
+.input-minimal:focus { border-color: #A67B5B; box-shadow: 0 0 0 4px rgba(166, 123, 91, 0.05); }
+
+.preview-img-minimal { width: 100%; height: 160px; object-fit: cover; border-radius: 15px; }
+
+.btn-primary-minimal {
+  background: #342318; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; transition: 0.3s;
+}
+.btn-primary-minimal:hover { background: #5a3e2b; transform: translateY(-2px); }
+
+.btn-delete-minimal {
+  background: none; border: none; color: #eee; font-size: 1.2rem; transition: 0.3s;
+}
+.btn-delete-minimal:hover { color: #cc0000; }
+
+.text-coffee { color: #A67B5B; }
+.badge-method { background: #f8f9fa; color: #666; font-size: 0.65rem; padding: 4px 10px; border-radius: 6px; font-weight: 700; }
+.status-pill { background: #eafaf1; color: #28a745; font-size: 0.65rem; font-weight: 800; padding: 5px 15px; border-radius: 50px; }
+.border-bottom-faint { border-bottom: 1px solid #f9f9f9; }

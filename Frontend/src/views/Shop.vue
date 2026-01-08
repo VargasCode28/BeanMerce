@@ -12,16 +12,7 @@
           
           
           
-          
-
-
-        <!-- USER PROFILE           NEW CHANGE-->
-        <!-- <div   v-if="user" class="user-info d-flex-items-center gap-2">
-          <i class="bi bi-person-circle user-icon"></i>
-          <span class="user-email">{{ user.email }}</span> -->
-
-
-
+        
           <router-link
           v-if="user"
           to="/perfil"
@@ -29,12 +20,11 @@
           
 
 
-          <i class="bi bi-person-circle user-icon"></i>
+          <i class="bi bi-gear-fill user-icon"></i>
           <span class="user-email">{{ user.name }}</span>
         
-
-
           </router-link>
+          
           
           
           <button 
@@ -337,12 +327,7 @@ onUnmounted(() => {
 
 
 
-
-
-
-
-
-
+<!-- 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
@@ -725,8 +710,25 @@ main,
 
 
 
-</style>
+</style> -->
 
+
+
+
+
+
+
+
+
+<style scoped
+
+
+src="/src/styles/Shop.css"
+
+
+>
+
+</style>
 
 
 

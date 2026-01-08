@@ -130,7 +130,7 @@ const goToRegister = () => router.push('/register')
 
 
 
-
+<!-- 
 <style scoped>
 
 
@@ -207,4 +207,25 @@ const goToRegister = () => router.push('/register')
     padding: 10px;
   }
 }
+</style> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style scoped
+
+
+src="/src/styles/Login.css"
+
+>
+
 </style>

@@ -146,7 +146,7 @@ const goToLogin = () => {
 
 
 
-
+<!-- 
 
 <style scoped>
 
@@ -229,4 +229,26 @@ const goToLogin = () => {
     padding: 2rem !important;
   }
 }
+</style>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style scoped
+
+src="/src/styles/Register.css"
+
+
+>
+
 </style>

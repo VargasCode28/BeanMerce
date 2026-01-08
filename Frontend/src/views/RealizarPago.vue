@@ -117,33 +117,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script setup lang="ts">
 
 import { ref, computed, onMounted } from 'vue'
@@ -238,87 +211,6 @@ const confirmPayment = async () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   try {
     await checkoutRequest({
       items: cart.value.map(i => ({
@@ -367,7 +259,7 @@ const confirmPayment = async () => {
 
 
 
-
+<!-- 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Montserrat:wght@700&display=swap');
 
@@ -516,5 +408,17 @@ const confirmPayment = async () => {
   opacity: 0;
   transform: translateY(-10px);
 }
-</style>
+</style> -->
 
+
+
+
+
+
+<style scoped
+
+src="/src/styles/Realizarpago.css"
+
+>
+
+</style>
