@@ -1,7 +1,11 @@
 import { Router } from 'express'
 import { authRequired } from '../middlewares/auth.middleware.js'
 import { createOrder} from '../controllers/order.controller.js'
-import { deleteAccount} from '../controllers/user.controller.js' //NEW
+import { 
+  deleteAccount,
+
+
+} from '../controllers/user.controller.js'
 
 const router = Router()
 
@@ -19,6 +23,8 @@ router.get('/shop', authRequired, (req, res) => {
 
 
 
-router.delete('/me', authRequired, deleteAccount) //NEW
+router.delete('/me', authRequired, deleteAccount) 
+
+
 
 export default router

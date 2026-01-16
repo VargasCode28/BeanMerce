@@ -65,8 +65,14 @@
 import { ref, onMounted } from 'vue'
 import router from '@/router'
 import Swal from 'sweetalert2'
-import { deleteAccountRequest } from '@/services/user.service'
 
+import { 
+  deleteAccountRequest,
+
+} from '@/services/user.service'
+
+
+ 
 
 
 const user = ref<any>({})
@@ -81,6 +87,11 @@ onMounted(() => {
   user.value = JSON.parse(storedUser)
 })
 
+
+
+
+
+
 const changePassword = async () => {
   if (!password.value) {
     Swal.fire('Ingresa una contraseña', '', 'warning')
@@ -89,6 +100,21 @@ const changePassword = async () => {
   Swal.fire('Contraseña actualizada', '', 'success')
   password.value = ''
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const deleteAccount = async () => {
   const result = await Swal.fire({

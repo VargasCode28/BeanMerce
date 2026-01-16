@@ -36,6 +36,8 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
 
 
 
+
+
 app.listen(process.env.PORT, () => {
     console.log(`Servidor en http://localhost:${process.env.PORT}`)
 })

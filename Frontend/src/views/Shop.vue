@@ -41,6 +41,9 @@
       </div>
     </nav>
 
+
+
+
 <section class="about-section py-5 mt-4">
       <div class="container">
         <div class="row align-items-center g-5">
@@ -118,6 +121,8 @@
       </div>
     </footer>
 
+
+
     <div class="offcanvas offcanvas-end border-0 shadow" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
       <div class="offcanvas-header border-bottom p-4">
         <h5 class="offcanvas-title fw-bold" id="cartOffcanvasLabel" style="letter-spacing: 2px;">TU CARRITO</h5>
@@ -132,19 +137,73 @@
 
 
 
-        <div class="cart-items-list">
-          <div v-for="item in cart" :key="item._id" class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom">
-            <div class="flex-grow-1">
-              <h6 class="mb-1 fw-bold small text-uppercase" style="letter-spacing: 1px;">{{ item.name }}</h6>
-              <p class="mb-0 small text-muted">{{ item.quantity }} x ${{ item.price }}</p>
-            </div>
-            <div class="fw-bold text-brown">
-              ${{ item.price * item.quantity }}
-            </div>
-          </div>
-        </div>
+         <div class="cart-items-list"> 
+
+           <!-- <div v-for="item in cart" :key="item._id" class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom">   -->
+
+        
 
 
+
+
+
+
+
+
+
+
+
+
+
+<div 
+  v-for="item in cart" 
+  :key="item._id" 
+  class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom"
+>
+  <div class="flex-grow-1">
+    <h6 class="mb-1 fw-bold small text-uppercase" style="letter-spacing: 1px;">
+      {{ item.name }}
+    </h6>
+
+    <div class="d-flex align-items-center gap-2">
+      <button 
+        class="btn btn-sm btn-outline-secondary"
+        @click="decreaseQuantity(item._id)"
+      >−</button>
+
+      <span class="small">{{ item.quantity }}</span>
+
+      <button 
+        class="btn btn-sm btn-outline-secondary"
+        @click="item.quantity++"
+      >+</button>
+    </div>
+
+    <p class="mb-0 small text-muted mt-1">
+      ${{ item.price }} c/u
+    </p>
+  </div>
+
+  <div class="text-end">
+    <div class="fw-bold text-brown mb-2">
+      ${{ item.price * item.quantity }}
+    </div>
+
+    <button 
+      class="btn btn-sm btn-outline-danger"
+      @click="removeFromCart(item._id)"
+    >
+      <i class="bi bi-trash"></i>
+    </button>
+  </div>
+</div>
+
+</div>
+
+
+
+        </div> 
+  
         <div v-if="cart.length" class="mt-auto">
           <div class="d-flex justify-content-between align-items-center mb-4 pt-3">
             <span class="text-muted fw-light">TOTAL</span>
@@ -156,10 +215,8 @@
         </div>
       </div>
     </div>
-  </div>
+ 
 </template>
-
-
 
 
 
@@ -195,13 +252,10 @@ const user =  ref<any>(null)  //NEW
 
 
 
-
 const getUserId = () => {
   const user = JSON.parse(localStorage.getItem('user') || 'null')
   return user?._id || null
 }
-
-
 
 
 
@@ -239,14 +293,14 @@ onMounted(async () => {
   }
 })
 
-
+//ADD
 const addToCart = (product: any) => {
   const existing = cart.value.find(p => p._id === product._id)
-  existing ? existing.quantity++ : cart.value.push({ ...product, quantity: 1 })
-
-
-
+  existing ? existing.quantity++ : cart.value.push({ ...product, quantity: 1 
   
+
+  })
+
   Swal.fire({
     toast: true,
     position: 'bottom-end',
@@ -259,11 +313,38 @@ const addToCart = (product: any) => {
   })
 }
 
+
+
+
+
+//RESTAR
+
+const decreaseQuantity = (productId: string) => {
+  const item = cart.value.find(i => i._id === productId)
+
+  if (!item) return
+
+  if (item.quantity > 1) {
+    item.quantity--
+  }else{
+    cart.value = cart.value.filter(i => i._id !== productId)
+  }
+}
+
+
+
+ // IN THIS PART WE HAVE THE REMOVE CART
+ 
+ const removeFromCart =(productId: string) => {
+  cart.value = cart.value.filter(item => item._id !==productId)
+ 
+ } 
+
+
+
 const total = computed(() =>
   cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
 )
-
-
 
 
 const goToPayment = () => {
@@ -327,394 +408,6 @@ onUnmounted(() => {
 
 
 
-<!-- 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
-
-
-
-
-
-
-
- /* NEW CHANGE FOR MI PROFILE*/
-.user-info {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #555;
-}
-
-
-.user-icon {
-  font-size: 1.4rem;
-  color: #6F4E37;
-}
-
-.user-email {
-  max-width: 140px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilos Sobre Nosotros */
-.about-section {
-  overflow: hidden;
-}
-
-.about-badge {
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  color: #A67B5B;
-  font-weight: 700;
-  border-bottom: 2px solid #A67B5B;
-  padding-bottom: 5px;
-}
-
-.about-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: #342318;
-}
-
-.about-description {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.feature-item {
-  background: #fdfaf8;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-}
-
-.feature-item i {
-  color: #6F4E37;
-  font-size: 1.5rem;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.feature-item h6 {
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.main-about-img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.main-about-img:hover {
-  transform: scale(1.02);
-}
-
-.minimal-divider {
-  width: 50px;
-  height: 3px;
-  background-color: #f0f0f0;
-  border: none;
-  opacity: 1;
-}
-
-/* Ajustes para móviles */
-@media (max-width: 991px) {
-  .about-text-wrapper {
-    text-align: center;
-  }
-  .about-badge {
-    justify-content: center;
-  }
-  .main-about-img {
-    height: 300px;
-    margin-bottom: 30px;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-/* Reset y Bases */
-.shop-wrapper {
-  background-color: #ffffff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #1a1a1a;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Navbar */
-.custom-nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #f0f0f0;
-  padding: 1rem 0;
-  z-index: 1050;
-}
-
-.logo-img {
-  height: 40px;
-  margin-right: 12px;
-}
-
-.brand-name {
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 4px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #342318;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.cart-trigger {
-  background: none;
-  border: none;
-  position: relative;
-  font-size: 1.5rem;
-  color: #342318;
-  transition: opacity 0.3s;
-}
-
-.cart-trigger:hover { opacity: 0.7; }
-
-.cart-dot {
-  position: absolute;
-  top: 0;
-  right: -8px;
-  background: #6F4E37;
-  color: white;
-  font-size: 0.65rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.logout-link {
-  background: none;
-  border: none;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #999;
-  transition: 0.3s;
-}
-
-.logout-link:hover { color: #342318; }
-
-/* Hero */
-.hero-minimal {
-  padding: 80px 0 40px;
-  text-align: center;
-}
-
-.hero-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -1px;
-}
-
-.hero-subtitle {
-  color: #888;
-  font-weight: 300;
-  font-size: 1rem;
-}
-
-/* Grid y Cards */
-main { flex: 1; }
-
-.product-item {
-  transition: transform 0.4s ease;
-}
-
-.product-image-container {
-  position: relative;
-  height: 320px;
-  overflow: hidden;
-  background-color: #fcfcfc;
-  border-radius: 4px;
-}
-
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
-}
-
-.product-action-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-  opacity: 0;
-  transition: 0.4s ease;
-}
-
-.product-item:hover .product-action-overlay { opacity: 1; }
-.product-item:hover .product-img { transform: scale(1.08); }
-
-.btn-add {
-  width: 100%;
-  background: #ffffff;
-  color: #1a1a1a;
-  border: none;
-  padding: 10px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.product-info {
-  padding-top: 15px;
-}
-
-.product-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.product-price {
-  color: #6F4E37;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-/* Offcanvas Carrito */
-.offcanvas { width: 380px !important; }
-
-.cart-item-minimal {
-  border-bottom: 1px solid #eee !important;
-}
-
-.text-brown { color: #6F4E37; }
-
-.btn-checkout-minimal {
-  width: 100%;
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  padding: 16px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  transition: background 0.3s;
-}
-
-.btn-checkout-minimal:hover { background: #342318; }
-
-/* Footer */
-.footer-clean {
-  padding: 60px 0;
-  border-top: 1px solid #f5f5f5;
-  margin-top: 60px;
-}
-
-.footer-brand {
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 6px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-}
-
-.footer-copy {
-  font-size: 0.75rem;
-  color: #aaa;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/*FADE UP PAGE ANIMATION*/
-
-
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-main,
-.hero-minimal,
-.about-section {
-  animation: fadeUp 0.6s ease-out;
-}
-
-
-
-
-</style> -->
-
-
-
-
 
 
 
@@ -725,9 +418,7 @@ main,
 
 src="/src/styles/Shop.css"
 
-
 >
-
 </style>
 
 
