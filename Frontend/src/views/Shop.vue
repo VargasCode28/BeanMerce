@@ -226,8 +226,7 @@ import { ref, computed, onMounted, watch, onUnmounted } from 'vue'
 import router from '@/router'
 import Swal from 'sweetalert2'
 import { getProductsRequest } from '@/services/product.service'
-import { checkoutRequest } from '@/services/order.service'
-import { routerKey } from 'vue-router'
+
 
 
 

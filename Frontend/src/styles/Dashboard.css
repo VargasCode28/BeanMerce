@@ -92,7 +92,7 @@
 .btn-primary-minimal:hover { background: #5a3e2b; transform: translateY(-2px); }
 
 .btn-delete-minimal {
-  background: none; border: none; color: #eee; font-size: 1.2rem; transition: 0.3s;
+  background: none; border: none; color: #9b2020; font-size: 1.2rem; transition: 0.3s;
 }
 .btn-delete-minimal:hover { color: #cc0000; }
 

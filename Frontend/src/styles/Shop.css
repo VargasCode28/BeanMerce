@@ -295,12 +295,12 @@ main { flex: 1; }
 
 .product-price {
   color: #6F4E37;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1rem;
 }
 
 /* Offcanvas Carrito */
-.offcanvas { width: 380px !important; }
+.offcanvas { width: 360px !important; }
 
 .cart-item-minimal {
   border-bottom: 1px solid #eee !important;
@@ -313,14 +313,25 @@ main { flex: 1; }
   background: #1a1a1a;
   color: white;
   border: none;
-  padding: 16px;
+  padding:17px;
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   transition: background 0.3s;
 }
 
 .btn-checkout-minimal:hover { background: #342318; }
+
+
+
+
+
+
+
+
+
+
+
 
 /* Footer */
 .footer-clean {

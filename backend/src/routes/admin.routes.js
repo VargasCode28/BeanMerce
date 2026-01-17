@@ -9,6 +9,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct
+
 } from '../controllers/admin.controller.js'
 
 const router = Router()
@@ -30,7 +31,6 @@ router.post(
 
 router.put('/products/:id', updateProduct)
 router.delete('/products/:id', deleteProduct)
-
 
 
 
