@@ -283,6 +283,34 @@ watch(cart, c => {
 
 
 
+
+
+//NEW 
+
+watch(user, newUser => {
+  if (!newUser) {
+    cart.value = []
+    return
+  }
+
+  const CART_KEY = `cart_${newUser._id}`
+  cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 onMounted(async () => {
   try {
     const { data } = await getProductsRequest()
@@ -387,6 +415,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   cleanScroll();
+
 })
 
 

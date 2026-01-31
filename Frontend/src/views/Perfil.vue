@@ -5,7 +5,9 @@
       <header class="text-center mb-5">
         <div class="avatar-circle mb-3">
           {{ user.name?.charAt(0).toUpperCase() || 'U' }}
+          
         </div>
+
         <h1 class="display-6 fw-bold">Mi Perfil</h1>
         <p class="text-muted small ls-1">GESTIÓN DE CUENTA BEANMERCE</p>
       </header>
@@ -67,12 +69,13 @@ import router from '@/router'
 import Swal from 'sweetalert2'
 
 import { 
+  changePasswordRequest,
   deleteAccountRequest,
 
 } from '@/services/user.service'
 
 
- 
+
 
 
 const user = ref<any>({})
@@ -92,19 +95,44 @@ onMounted(() => {
 
 
 
+// const changePassword = async () => {
+//   if (!password.value) {
+
+
+//     Swal.fire('Ingresa una contraseña', '', 'warning')
+//     return
+//   }
+
+  
+//   Swal.fire('Contraseña actualizada', '', 'success')
+//   password.value = ''
+// }
+
+
+
+
+
+
+
+
+
+
 const changePassword = async () => {
   if (!password.value) {
     Swal.fire('Ingresa una contraseña', '', 'warning')
     return
   }
-  Swal.fire('Contraseña actualizada', '', 'success')
-  password.value = ''
+
+  try {
+    await changePasswordRequest(password.value)
+
+    Swal.fire('Contraseña actualizada', '', 'success')
+    password.value = ''
+
+  } catch (error) {
+    Swal.fire('Error', 'No se pudo cambiar la contraseña', 'error')
+  }
 }
-
-
-
-
-
 
 
 
@@ -138,7 +166,16 @@ const deleteAccount = async () => {
     Swal.fire('Error', 'No se pudo eliminar la cuenta', 'error')
   }
 }
+
+
 </script>
+
+
+
+
+
+
+
 
 
 

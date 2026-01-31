@@ -3,8 +3,8 @@ import { authRequired } from '../middlewares/auth.middleware.js'
 import { createOrder} from '../controllers/order.controller.js'
 import { 
   deleteAccount,
-
-
+  changePassword
+  
 } from '../controllers/user.controller.js'
 
 const router = Router()
@@ -23,7 +23,10 @@ router.get('/shop', authRequired, (req, res) => {
 
 
 
+router.put('/me/password', authRequired, changePassword) //NEW
+
 router.delete('/me', authRequired, deleteAccount) 
+
 
 
 

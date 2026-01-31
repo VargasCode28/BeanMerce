@@ -7,16 +7,21 @@
         <h6 class="fw-bold ls-2">ADMIN BEANMERCE</h6>
       </div>
       <nav class="nav flex-column gap-2">
-        <a class="nav-link-minimal active" href="#"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
-        <a class="nav-link-minimal" href="#"><i class="bi bi-box-seam me-2"></i> Inventario</a>
+
+
+        <RouterLink to="#"  class="nav-link-minimal active"><i class="bi bi-speedometer2 me-2">Dashboard</i></RouterLink>
+        <!-- <a class="nav-link-minimal active" href="#"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a> -->
+
+        <!-- <a class="nav-link-minimal" href="#"><i class="bi bi-box-seam me-2"></i> Inventario</a>
         <a class="nav-link-minimal" href="#"><i class="bi bi-people me-2"></i> Usuarios</a>
-        <a class="nav-link-minimal" href="#"><i class="bi bi-receipt me-2"></i> Órdenes</a>
+        <a class="nav-link-minimal" href="#"><i class="bi bi-receipt me-2"></i> Órdenes</a> -->
         <hr class="my-4 opacity-10">
         <button @click="logout" class="btn-logout-minimal">
           <i class="bi bi-box-arrow-left me-2"></i> SALIR
         </button>
       </nav>
     </aside>
+    
 
     <main class="main-content-minimal flex-grow-1 p-5">
       <header class="d-flex justify-content-between align-items-center mb-5">
@@ -37,15 +42,22 @@
             <div class="stat-icon-minimal"><i class="bi bi-people"></i></div>
           </div>
         </div>
+
+
         <div class="col-md-4">
           <div class="stat-card-minimal">
             <div class="stat-info">
               <span class="stat-label">Órdenes</span>
               <h3 class="stat-value">{{ orders.length }}</h3>
+              <RouterLink to="/ordenes"></RouterLink>
             </div>
             <div class="stat-icon-minimal"><i class="bi bi-cart-check"></i></div>
           </div>
-        </div>
+        </div> 
+
+
+
+
         <div class="col-md-4">
           <div class="stat-card-minimal">
             <div class="stat-info">
@@ -116,7 +128,7 @@
                       
                       
 
-                     
+                    
                     </td>
                   </tr>
                 </tbody>
@@ -296,12 +308,6 @@ const logout = () => {
   
 }
 </script>
-
-
-
-
-
-
 
 
 

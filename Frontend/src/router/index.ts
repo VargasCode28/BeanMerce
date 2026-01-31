@@ -52,7 +52,12 @@ const router = createRouter({
       name: 'perfil',
       component: Perfil,
       meta: {requiresAuth: true}
-    }
+    },
+
+
+    
+
+
 
   ],
 })
