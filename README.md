@@ -24,7 +24,7 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
 
 
 
-
+AUN TRABAJANDO EN ELLO
 
 
 <div align="center">
