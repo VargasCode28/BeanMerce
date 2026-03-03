@@ -38,8 +38,7 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
 
   <img width="1903" height="866" alt="Admin" src="https://github.com/user-attachments/assets/7fef3f09-2a45-4880-a4d5-e7b628bf0673" />
 
-
-
+  <img width="1257" height="827" alt="databaseMoongoCompac" src="https://github.com/user-attachments/assets/0741499d-3c22-4613-a504-2e610a1b7b45" />
 
 
 
