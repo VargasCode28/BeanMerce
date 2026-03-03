@@ -30,5 +30,6 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
   <img width="1920" height="2609" alt="Shop" src="https://github.com/user-attachments/assets/4d93bda2-c48b-4d26-b407-d16f6ea93b8f" />
   
   <img width="1903" height="868" alt="Screenshot 2025-12-29 155613" src="https://github.com/user-attachments/assets/8bd3f393-67fc-41e5-a89e-78de9d3f8fa4" />
+<img width="1903" height="866" alt="Admin" src="https://github.com/user-attachments/assets/7fef3f09-2a45-4880-a4d5-e7b628bf0673" />
 
 </div>
