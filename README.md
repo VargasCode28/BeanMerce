@@ -16,7 +16,8 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
 • 	dotenv → Para proteger datos sensibles con variables de entorno.
 • 	Multer (uploads) → Lo usé para manejar imágenes cargadas dinámicamente.
 • 	Middlewares, Models, Routes y Controllers → Organicé el backend con esta estructura modular.
-• 	API con roles (admin) → Implementé control de acceso para endpoints específicos.
+• 	API con roles (admin) → Implementé control de acceso para endpoints específicos y CRUD.
+    
 
 🗄️ Base de Datos
 • 	MongoDB (NoSQL) → Opté por una base de datos no relacional porque me resultaba más práctica para este proyecto. Trabaja con documentos JSON, lo que me dio flexibilidad y rapidez en el desarrollo.
