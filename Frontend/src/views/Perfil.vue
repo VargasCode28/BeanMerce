@@ -93,30 +93,6 @@ onMounted(() => {
 
 
 
-
-
-// const changePassword = async () => {
-//   if (!password.value) {
-
-
-//     Swal.fire('Ingresa una contraseña', '', 'warning')
-//     return
-//   }
-
-  
-//   Swal.fire('Contraseña actualizada', '', 'success')
-//   password.value = ''
-// }
-
-
-
-
-
-
-
-
-
-
 const changePassword = async () => {
   if (!password.value) {
     Swal.fire('Ingresa una contraseña', '', 'warning')
@@ -133,13 +109,6 @@ const changePassword = async () => {
     Swal.fire('Error', 'No se pudo cambiar la contraseña', 'error')
   }
 }
-
-
-
-
-
-
-
 
 
 

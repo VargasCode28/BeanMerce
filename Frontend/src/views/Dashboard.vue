@@ -10,11 +10,7 @@
 
 
         <RouterLink to="#"  class="nav-link-minimal active"><i class="bi bi-speedometer2 me-2">Dashboard</i></RouterLink>
-        <!-- <a class="nav-link-minimal active" href="#"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a> -->
-
-        <!-- <a class="nav-link-minimal" href="#"><i class="bi bi-box-seam me-2"></i> Inventario</a>
-        <a class="nav-link-minimal" href="#"><i class="bi bi-people me-2"></i> Usuarios</a>
-        <a class="nav-link-minimal" href="#"><i class="bi bi-receipt me-2"></i> Órdenes</a> -->
+        
         <hr class="my-4 opacity-10">
         <button @click="logout" class="btn-logout-minimal">
           <i class="bi bi-box-arrow-left me-2"></i> SALIR
