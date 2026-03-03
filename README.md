@@ -27,7 +27,6 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
 
   <img width="1920" height="869" alt="login" src="https://github.com/user-attachments/assets/048316b5-a2b9-45f9-922f-dc9d1b92bac2" />
 
-  <img width="1920" height="2609" alt="Shop" src="https://github.com/user-attachments/assets/4d93bda2-c48b-4d26-b407-d16f6ea93b8f" />
 
  <img width="1920" height="2609" alt="CoffeeBrake" src="https://github.com/user-attachments/assets/c16a7329-976f-40b3-806e-90f1ccda6a3f" />
 
