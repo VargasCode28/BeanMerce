@@ -1,5 +1,5 @@
 
-Proyecto Fullstack con Vue.js + Typescript + Node.js + MongoDB
+Proyecto e-commerce Fullstack con Vue.js + Typescript + Node.js + MongoDB
 
 Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la parte visual como la lógica del servidor y la base de datos. Fui integrando distintas herramientas y librerías que me ayudaron a mantener el código modular, seguro y fácil de escalar.
 
