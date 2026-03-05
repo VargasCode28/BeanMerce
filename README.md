@@ -3,14 +3,14 @@ Proyecto e-commerce Fullstack con Vue.js + Typescript + Node.js + MongoDB
 
 Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la parte visual como la lógica del servidor y la base de datos. Fui integrando distintas herramientas y librerías que me ayudaron a mantener el código modular, seguro y fácil de escalar.
 
-🚀 Lo que usé en el Frontend
+ Lo que usé en el Frontend
 • 	Vue.js  → Framework principal para construir la interfaz.
 • 	TypeScript → Para darle tipado y mayor control al código.
 • 	Bootstrap  → Lo usé para estilos y componentes responsivos.
 • 	Axios → Lo configuré globalmente para comunicar el frontend con el backend.
 • 	Vue Router → Para manejar las rutas y la navegación dentro de la app.
 
-⚙️ Lo que usé en el Backend
+Lo que usé en el Backend
 • 	Node.js + Express (ESM) → Base del servidor, con soporte para módulos ES.
 • 	CORS → Para permitir las solicitudes desde el frontend de manera segura.
 • 	dotenv → Para proteger datos sensibles con variables de entorno.
@@ -19,7 +19,7 @@ Este proyecto lo desarrollé como una aplicación Fullstack, cuidando tanto la p
 • 	API con roles (admin) → Implementé control de acceso para endpoints específicos y CRUD.
     
 
-🗄️ Base de Datos
+Base de Datos
 • 	MongoDB (NoSQL) → Opté por una base de datos no relacional porque me resultaba más práctica para este proyecto. Trabaja con documentos JSON, lo que me dio flexibilidad y rapidez en el desarrollo.
 
 
