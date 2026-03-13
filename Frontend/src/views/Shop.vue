@@ -137,9 +137,9 @@
 
 
 
-         <div class="cart-items-list"> 
+        <div class="cart-items-list"> 
 
-           <!-- <div v-for="item in cart" :key="item._id" class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom">   -->
+          <!-- <div v-for="item in cart" :key="item._id" class="cart-item-minimal d-flex align-items-center mb-4 pb-3 border-bottom">   -->
 
         
 
@@ -175,7 +175,8 @@
 
       <button 
         class="btn btn-sm btn-outline-secondary"
-        @click="item.quantity++"
+        @click="increaseQuantity(item._id)"
+
       >+</button>
     </div>
 
@@ -230,6 +231,19 @@ import { getProductsRequest } from '@/services/product.service'
 
 
 
+
+const increaseQuantity = (productId: string) => {
+  const item = cart.value.find(i => i._id === productId)
+  if (item) item.quantity++
+}
+
+
+
+
+
+
+
+
 const products = ref<any[]>([])
 const cart = ref<any[]>([])
 
@@ -240,14 +254,26 @@ const user =  ref<any>(null)  //NEW
 
 
 
-  onMounted(() => {        //NEW 
+  // onMounted(() => {        
 
-    const storeUser = localStorage.getItem('user')
-    if(storeUser) {
-      user.value = JSON.parse(storeUser)
-    }
-  })
+  //   const storeUser = localStorage.getItem('user')
+  //   if(storeUser) {
+  //     user.value = JSON.parse(storeUser)
+  //   }
+  // })
 
+
+onMounted(() => {
+
+  const storedUser = localStorage.getItem('user')
+
+  if (storedUser) {
+    user.value = JSON.parse(storedUser)
+  }
+
+  loadCart()
+
+})
 
 
 
@@ -258,9 +284,27 @@ const getUserId = () => {
 
 
 
+
+
+
+
+//CAMBIOS 2026
+
+// const loadCart = () => {
+//   const user = JSON.parse(localStorage.getItem('user') || 'null')
+//   const userId = user?._id || 'guest'
+//   const CART_KEY = `cart_${userId}`
+
+//   cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
+// }
+
+// onMounted(() => {
+//   loadCart()
+// })
+
+
 const loadCart = () => {
-  const user = JSON.parse(localStorage.getItem('user') || 'null')
-  const userId = user?._id || 'guest'
+  const userId = user.value?._id || 'guest'
   const CART_KEY = `cart_${userId}`
 
   cart.value = JSON.parse(localStorage.getItem(CART_KEY) || '[]')
@@ -272,13 +316,32 @@ onMounted(() => {
 
 
 
-watch(cart, c => {
-  const user = JSON.parse(localStorage.getItem('user') || 'null')
-  const userId = user?._id || 'guest'
+
+// watch(cart, c => {
+//   const user = JSON.parse(localStorage.getItem('user') || 'null')
+//   const userId = user?._id || 'guest'
+//   const CART_KEY = `cart_${userId}`
+
+//   localStorage.setItem(CART_KEY, JSON.stringify(c))
+// }, { deep: true })
+
+
+
+watch(cart, (c) => {
+  const userId = user.value?._id || 'guest'
   const CART_KEY = `cart_${userId}`
 
+
   localStorage.setItem(CART_KEY, JSON.stringify(c))
-}, { deep: true })
+
+}, {deep: true })
+
+
+
+
+
+
+
 
 
 
@@ -385,6 +448,8 @@ const goToPayment = () => {
 
 
 const logout = () => {   
+
+  cart.value = []
   
   localStorage.removeItem('token')
   localStorage.removeItem('user')

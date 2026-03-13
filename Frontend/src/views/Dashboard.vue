@@ -8,8 +8,8 @@
       </div>
       <nav class="nav flex-column gap-2">
 
-
-        <RouterLink to="#"  class="nav-link-minimal active"><i class="bi bi-speedometer2 me-2">Dashboard</i></RouterLink>
+        <RouterLink to="#"  class="nav-link-minimal active"><i class="profile">General</i></RouterLink>
+        <RouterLink to="/historial"  class="nav-link-minimal active"><i class="bi bi-speedometer2 me-2">Historial de compras</i></RouterLink>
         
         <hr class="my-4 opacity-10">
         <button @click="logout" class="btn-logout-minimal">
@@ -18,7 +18,6 @@
       </nav>
     </aside>
     
-
     <main class="main-content-minimal flex-grow-1 p-5">
       <header class="d-flex justify-content-between align-items-center mb-5">
         <div>
@@ -165,149 +164,25 @@
 
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import router from '@/router'
-import Swal from 'sweetalert2'
-import {
-  getUsersAdmin,
-  getOrdersAdmin,
-  getProductsAdmin,
-  createProductAdmin,
-  updateProductAdmin,  //New update for the product
-  deleteProductAdmin
-} from '@/services/admin.service'
 
-const users = ref<any[]>([])
-const orders = ref<any[]>([])
-const products = ref<any[]>([])
-const name = ref('')
-const price = ref<number | null>(null)
-const imageFile = ref<File | null>(null)
-const imagePreview = ref<string | null> (null)
+import { useAdmin } from '@/composables/useAdmin';
 
-const onFileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement
-  if (!input.files || !input.files[0]) return
-  imageFile.value = input.files[0]
-  imagePreview.value = URL.createObjectURL(input.files[0])
-}
+const {
+  users,
+  orders,
+  products,
+  name,
+  price,
+  imageFile,
+  imagePreview,
+  onFileChange,
+  createProduct,
+  removeProduct,
+  updateProduct,
+  logout
+} = useAdmin()
 
-const loadAll = async () => {
-  try {
-    users.value = (await getUsersAdmin()).data
-    orders.value = (await getOrdersAdmin()).data
-    products.value = (await getProductsAdmin()).data
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-onMounted(loadAll)
-
-const createProduct = async () => {
-  if (!name.value || price.value === null || !imageFile.value) {
-    Swal.fire('Campos incompletos', 'Incluye nombre, precio e imagen', 'warning')
-    return
-  }
-  const formData = new FormData()
-  formData.append('name', name.value)
-  formData.append('price', price.value.toString())
-  formData.append('image', imageFile.value)
-  await createProductAdmin(formData)
-  Swal.fire({ icon: 'success', title: 'Producto creado', toast: true, position: 'top-end', timer: 2000, showConfirmButton: false })
-  name.value = ''; price.value = null; imageFile.value = null; imagePreview.value = null;
-  loadAll()
-}
-
-const removeProduct = async (id: string) => {
-  const result = await Swal.fire({
-    title: '¿Estás seguro?',
-    text: "Esta acción no se puede deshacer",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#342318',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, eliminar'
-  })
-  if (result.isConfirmed) {
-    await deleteProductAdmin(id)
-    loadAll()
-    Swal.fire('Eliminado', 'El producto ha sido borrado', 'success')
-  }
-}
-
-
-
-
-
-
-const updateProduct = async (product: any) => {
-  const { value: formValues } = await Swal.fire({
-    title: 'Editar producto',
-    html: `
-      <input 
-        id="swal-name" 
-        class="swal2-input" 
-        placeholder="Nombre"
-        value="${product.name}"
-      />
-      <input 
-        id="swal-price" 
-        type="number"
-        class="swal2-input" 
-        placeholder="Precio"
-        value="${product.price}"
-      />
-    `,
-    showCancelButton: true,
-    confirmButtonText: 'Guardar',
-    cancelButtonText: 'Cancelar',
-    preConfirm: () => {
-      const name = (document.getElementById('swal-name') as HTMLInputElement).value
-      const price = (document.getElementById('swal-price') as HTMLInputElement).value
-
-      if (!name || !price) {
-        Swal.showValidationMessage('Todos los campos son obligatorios')
-        return
-      }
-
-      return {
-        name,
-        price: Number(price)
-      }
-    }
-  })
-
-  if (!formValues) return
-
-  try {
-    await updateProductAdmin(product._id, formValues)
-
-    Swal.fire('Actualizado', 'Producto editado correctamente', 'success')
-    loadAll()
-  } catch (error) {
-    Swal.fire('Error', 'No se pudo actualizar el producto', 'error')
-  }
-}
-
-
-
-
-
-
-
-
-const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('role')
-  router.push('/')
-  
-}
 </script>
-
-
-
-
 
 <style scoped
 

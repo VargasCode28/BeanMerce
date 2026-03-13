@@ -13,8 +13,6 @@ export const getProductsAdmin = () => {
   return privateApi.get('/admin/products')
 }
 
-
-// ✅ NO headers aquí
 export const createProductAdmin = (data: FormData) =>
   privateApi.post('/admin/products', data)
 

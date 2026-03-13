@@ -1,4 +1,5 @@
 import Dashboard from '@/views/Dashboard.vue'
+import HistorialView from '@/views/HistorialView.vue'
 import LoginView from '@/views/LoginView.vue'
 import Perfil from '@/views/Perfil.vue'
 import RealizarPago from '@/views/RealizarPago.vue'
@@ -63,6 +64,10 @@ const router = createRouter({
 
 
     
+    {path: '/historial', 
+    component: HistorialView
+  
+    },
 
 
 
